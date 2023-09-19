@@ -62,9 +62,9 @@ const useMapLayer = () => {
     expand(direction: 'top' | 'right' | 'bottom' | 'left') {
       switch (direction) {
         case 'top':
-          return setLayer(prev => [new Array(DEFAULT_LAYER_DIMENSIONS.x).fill(null), ...prev]);
+          return setLayer(prev => [new Array(self.dimensions.columns).fill(null), ...prev]);
         case 'bottom':
-          return setLayer(prev => [...prev, new Array(DEFAULT_LAYER_DIMENSIONS.x).fill(null)]);
+          return setLayer(prev => [...prev, new Array(self.dimensions.columns).fill(null)]);
         case 'left':
           return setLayer(prev => prev.map(columns => [null, ...columns]));
         case 'right':

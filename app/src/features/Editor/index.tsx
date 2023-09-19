@@ -5,9 +5,11 @@ import { EditorCtx, useEditorCtx } from "./context";
 const Editor = withWrapper(EditorCtx, () => {
   const ctx = useEditorCtx();
 
+  console.log(ctx.layer.value.map(v => v.length))
+
   return (
     <div className="p-2 h-full">
-      <div className="rounded-md border h-full grid grid-cols-3 gap-2">
+      <div className="rounded-md border p-2 h-full grid grid-cols-3 gap-2">
         <main className="p-2 rounded-md border col-span-2 flex flex-col gap-2">
           <menu className="p-2 rounded-md border">
             Menu
@@ -21,17 +23,16 @@ const Editor = withWrapper(EditorCtx, () => {
             }}>
               <ul className="contents">
                 {new Array(ctx.layer.dimensions.columns + 2).fill(null).map((_, i) =>
-                  <li className="bg-red-50" onClick={() => ctx.layer.expand('top')} />
+                  <li key={i} className="bg-red-50" onClick={() => ctx.layer.expand('top')} />
                 )}
               </ul>
 
-
-              {ctx.layer.value.map(row => (
-                <ul key={JSON.stringify(row)} className="contents">
+              {ctx.layer.value.map((row, i) => (
+                <ul key={JSON.stringify(row) + i} className="contents">
                   <li className="bg-red-50" onClick={() => ctx.layer.expand('left')} />
 
-                  {row.map(column => (
-                    <li key={JSON.stringify(column)} className="border">
+                  {row.map((column, i) => (
+                    <li key={JSON.stringify(column) + i} className="border">
                       {JSON.stringify(column)}
                     </li>
                   ))}
@@ -42,7 +43,7 @@ const Editor = withWrapper(EditorCtx, () => {
 
               <ul className="contents">
                 {new Array(ctx.layer.dimensions.columns + 2).fill(null).map((_, i) =>
-                  <li className="bg-red-50" onClick={() => ctx.layer.expand('bottom')} />
+                  <li key={i} className="bg-red-50" onClick={() => ctx.layer.expand('bottom')} />
                 )}
               </ul>
             </div>

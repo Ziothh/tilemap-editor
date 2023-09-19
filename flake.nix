@@ -46,7 +46,7 @@
 
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath libraries;
 
-          # WEBKIT_DISABLE_COMPOSITING_MODE = 1;
+          WEBKIT_DISABLE_COMPOSITING_MODE = 1;
           GDK_BACKEND="x11";
           RUST_BACKTRACE = "full";
         };
